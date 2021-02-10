@@ -86,6 +86,22 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {//STEP 5
+    title: 'How  to Save the Planet!',
+    date: 'June 2nd, 2001',
+    firstParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper cursus orci.
+        Vestibulum at dignissim nisi, id fringilla odio. Ut eget condimentum justo. Duis scelerisque sagittis urna. 
+        Duis quis lorem eu mi aliquam feugiat sit amet viverra orci. Donec venenatis quam augue, posuere commodo elit imperdiet elementum. 
+        Duis auctor tortor in rutrum condimentum. Etiam id mauris a ligula vestibulum varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+    secondParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper cursus orci.
+        Vestibulum at dignissim nisi, id fringilla odio. Ut eget condimentum justo. Duis scelerisque sagittis urna. 
+        Duis quis lorem eu mi aliquam feugiat sit amet viverra orci. Donec venenatis quam augue, posuere commodo elit imperdiet elementum. 
+        Duis auctor tortor in rutrum condimentum. Etiam id mauris a ligula vestibulum varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+    thirdParagraph: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras ullamcorper cursus orci.
+        Vestibulum at dignissim nisi, id fringilla odio. Ut eget condimentum justo. Duis scelerisque sagittis urna. 
+        Duis quis lorem eu mi aliquam feugiat sit amet viverra orci. Donec venenatis quam augue, posuere commodo elit imperdiet elementum. 
+        Duis auctor tortor in rutrum condimentum. Etiam id mauris a ligula vestibulum varius. Lorem ipsum dolor sit amet, consectetur adipiscing elit.`
   }
 ];
 
@@ -102,7 +118,55 @@ const data = [
 
     <span class="expandButton">+</span>
   </div>
+*/
 
+function articleMaker(articleObj) {
+  
+  //installments
+  let article = document.createElement('div');
+  let title = document.createElement('h2');
+  let date = document.createElement('p');
+  let firstP = document.createElement('p');
+  let secondP = document.createElement('p');
+  let thirdP = document.createElement('p');
+  let button = document.createElement('span');
+
+  //adding classes
+  article.classList.add('article');
+  date.classList.add('date')
+  button.classList.add('expandButton')
+
+  //text
+  title.textContent = articleObj.title;
+  date.textContent = articleObj.date;
+  firstP.textContent = articleObj.firstParagraph;
+  secondP.textContent = articleObj.secondParagraph;
+  thirdP.textContent = articleObj.thirdParagraph;
+  button.textContent = '+';
+
+  button.addEventListener('click', (event) => {
+    article.classList.toggle('article-open');
+  })
+
+  //hierarchy 
+  article.appendChild(title);
+  article.appendChild(date);
+  article.appendChild(firstP);
+  article.appendChild(secondP);
+  article.appendChild(thirdP);
+  article.appendChild(button);
+
+  return article;
+}
+
+let articleArea = document.querySelector('.articles')
+
+data.forEach((art) => {
+  let articleContent = articleMaker(art);
+  articleArea.appendChild(articleContent);
+})
+
+/*
   Step 2: Still inside `articleMaker`, add an event listener to the span.expandButton.
   This listener should toggle the class 'article-open' on div.article.
 

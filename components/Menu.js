@@ -17,6 +17,44 @@ let menuItems = [
       {each menu item as an <li>}
     </ul>
   </div>
+*/
+
+let menuButton = document.querySelector('.menu-button');
+let header = document.querySelector('.header');
+
+function menuMaker(menuArray) {
+
+  //installment
+  let menu = document.createElement('div');
+  let menuList = document.createElement('ul');
+
+  // adding classes
+  menu.classList.add('menu');
+
+  //hierarchy
+  menu.appendChild(menuList);
+
+  //full installing of list items
+  menuArray.forEach((tab) => {
+    let menuTab = document.createElement('li');
+    menuTab.textContent = tab;
+    menuList.appendChild(menuTab)
+  });
+
+  menuButton.addEventListener('click', (event) => {
+    menu.classList.toggle('menu--open');
+  })
+
+  return menu;
+}
+
+let navMenu = menuMaker(menuItems);
+header.appendChild(navMenu);
+
+
+
+
+/*
 
   The 'menuMaker' takes an array of menu items as its only argument.
 
